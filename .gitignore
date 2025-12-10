@@ -1,0 +1,29 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Backend Spring Boot
+Backend-SpringBoot/target/
+Backend-SpringBoot/.idea/
+Backend-SpringBoot/*.iml
+
+# Android
+App-Android/build/
+App-Android/.gradle/
+App-Android/.idea/caches/
+App-Android/.idea/modules.xml
+App-Android/.idea/workspace.xml
+App-Android/local.properties
+App-Android/app/build/
+
+# Logs
+*.log
+
+# Temporales
+*~
+*.swp
+*.tmp
+
+# Archivos grandes innecesarios
+*.zip
+ziwfBQbM
