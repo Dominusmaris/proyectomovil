@@ -1,7 +1,7 @@
 # Dockerfile para Backend Spring Boot - Proyecto Finanzas DuocUC
 
-# Usar imagen base de Java 17
-FROM openjdk:17-jdk-slim
+# Usar imagen base de Java 17 (versión actualizada)
+FROM amazoncorretto:17-alpine
 
 # Información del proyecto
 LABEL maintainer="Proyecto DuocUC - DSY1105"
