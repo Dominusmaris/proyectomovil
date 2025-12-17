@@ -10,10 +10,8 @@ services:
         value: 17
       - key: MAVEN_VERSION
         value: 3.9
-      - key: DB_DDL_MODE
-        value: update
-      - key: H2_CONSOLE_ENABLED
-        value: false
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
       - key: SHOW_SQL
         value: false
       - key: LOG_LEVEL
