@@ -132,13 +132,15 @@ public class AuthController {
                 logger.info("📧 Email de restablecimiento enviado a: {}", email);
 
                 return ResponseEntity.ok(ApiResponse.success(
-                    "Si el email existe, recibirás instrucciones para restablecer la contraseña"));
+                    "Si el email existe, recibirás instrucciones para restablecer la contraseña",
+                    "Email de restablecimiento enviado"));
             } else {
                 // Por seguridad, no revelar si el email existe o no
                 logger.info("❓ Email no encontrado para reset: {}", email);
 
                 return ResponseEntity.ok(ApiResponse.success(
-                    "Si el email existe, recibirás instrucciones para restablecer la contraseña"));
+                    "Si el email existe, recibirás instrucciones para restablecer la contraseña",
+                    "Email no encontrado"));
             }
 
         } catch (Exception e) {
