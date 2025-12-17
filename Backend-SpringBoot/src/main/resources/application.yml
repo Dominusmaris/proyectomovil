@@ -48,8 +48,10 @@ spring:
     activate:
       on-profile: prod
 
-  # PostgreSQL en Render - Configurado via DatabaseConfig.java
-  # datasource configurado automáticamente por clase Java
+  # PostgreSQL en Render - Automático via DATABASE_URL
+  datasource:
+    url: ${DATABASE_URL}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
