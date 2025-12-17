@@ -50,6 +50,12 @@ spring:
 
   # PostgreSQL configurado via DatabaseUrlConfig.java
 
+  # Deshabilitar Spring Security temporalmente
+  security:
+    user:
+      name: admin
+      password: admin123
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
