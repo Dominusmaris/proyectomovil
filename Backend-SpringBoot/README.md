@@ -1,50 +1,75 @@
-# 💰 BACKEND FINANZAS - SPRING BOOT
+# 🏦 Backend Finanzas - Proyecto DuocUC
 
-Backend REST API para aplicación móvil de finanzas personales.
+Backend profesional para la aplicación de finanzas móvil desarrollado en **Spring Boot 3**.
 
-## 🚀 URLs
+## 📱 Integración con App Android
 
-- **Local:** http://localhost:8081
-- **Producción:** https://backend-finanzas-xxxxx.onrender.com
+Este backend está diseñado específicamente para conectarse con la app Android del proyecto de finanzas.
 
-## 📡 Endpoints de Prueba
+### 🔗 Endpoints Disponibles
 
-```
-GET /api/pruebas/backend-funciona        → "✅ Backend funcionando"
-GET /api/pruebas/base-datos-conectada    → Info PostgreSQL
-GET /api/pruebas/info-sistema            → Java, OS, versión
-POST /api/pruebas/enviar-datos           → Echo test
-GET /api/pruebas/listar-tablas           → Tablas BD
-```
-
-## 🛠️ Stack
-
-- Spring Boot 3.1.6
-- Java 17
-- Maven
-- PostgreSQL (prod) / H2 (dev)
-
-## 💻 Ejecutar Local
-
+#### 🔐 Autenticación (`/api/auth`)
 ```bash
-mvn spring-boot:run
+POST /api/auth/login         # Login de usuario
+POST /api/auth/register      # Registro de nuevo usuario
+POST /api/auth/reset-password # Restablecer contraseña
+GET  /api/auth/health        # Health check del servidor
 ```
 
-H2 Console: http://localhost:8081/h2-console
+## 🚀 Deploy en Render
+
+### Variables de Entorno Necesarias:
+```env
+SPRING_PROFILES_ACTIVE=prod
+DATABASE_URL=postgresql://username:password@host:port/database
+PORT=8080
+```
+
+### Comando de Build:
+```bash
+./mvnw clean package -DskipTests
+```
+
+### Comando de Start:
+```bash
+java -jar target/backend-finanzas.jar
+```
+
+## 🔧 Desarrollo Local
+
+### Prerrequisitos:
+- Java 17+
+- Maven 3.6+
+
+### Ejecutar localmente:
+```bash
+./mvnw spring-boot:run
+```
+
+El servidor estará disponible en: `http://localhost:8080`
+
+### Ver Base de Datos (H2 Console):
+- URL: `http://localhost:8080/h2-console`
 - JDBC URL: `jdbc:h2:mem:testdb`
-- User: `test`
-- Password: `contra`
+- Usuario: `sa`
+- Password: `password`
 
-## 📦 Estructura
+## 📝 Logs del Servidor
+
+El backend registra automáticamente:
+- ✅ **Logins exitosos** y ❌ **fallidos**
+- 📝 **Registros** de nuevos usuarios
+- 🔄 **Peticiones** al servidor con timestamps
+
+## 🎯 Credenciales de Prueba
 
 ```
-backend/
-├── entidades/          → Usuario, Transaccion, Categoria
-├── repositorios/       → JPA Repositories
-├── controladores/      → REST Controllers
-└── configuracion/      → CORS, Security
+Usuario: estudiante.duoc
+Password: ProyectoFinanzas2024
 ```
 
-## 👤 Autor
+## 👨‍🎓 Proyecto Académico
 
-Evan - DuocUC - DSY1105
+**Institución:** DuocUC
+**Asignatura:** DSY1105 - Desarrollo de Sistemas
+**Tipo:** Evaluación Final Transversal (EFT)

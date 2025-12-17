@@ -1,0 +1,69 @@
+# CONFIGURACIÓN BACKEND FINANZAS
+# Proyecto: App Android Finanzas - DuocUC
+# Perfil por defecto: desarrollo local
+
+spring:
+  profiles:
+    active: dev
+
+  # Configuración JPA
+  jpa:
+    hibernate:
+      ddl-auto: update  # Crear/actualizar tablas automáticamente
+    show-sql: true     # Mostrar consultas SQL en logs
+    properties:
+      hibernate:
+        format_sql: true # Formatear SQL para mejor lectura
+
+  # Base de datos H2 para desarrollo local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  # Consola H2 para ver la BD en navegador
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# Puerto del servidor
+server:
+  port: 8080
+
+# Logs detallados
+logging:
+  level:
+    com.duoc.finanzas: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# PERFIL PRODUCCIÓN (Render)
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # PostgreSQL en Render
+  datasource:
+    url: ${DATABASE_URL}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate  # No modificar estructura en producción
+    show-sql: false      # No mostrar SQL en producción
+
+# Puerto dinámico de Render
+server:
+  port: ${PORT:8080}
+
+# Logs mínimos en producción
+logging:
+  level:
+    com.duoc.finanzas: INFO
+    root: INFO
