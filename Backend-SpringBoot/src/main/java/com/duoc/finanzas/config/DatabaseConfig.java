@@ -22,6 +22,9 @@ public class DatabaseConfig {
             throw new RuntimeException("DATABASE_URL no está configurada");
         }
 
+        // Limpiar espacios y caracteres invisibles
+        databaseUrl = databaseUrl.trim();
+
         URI dbUri = URI.create(databaseUrl);
         String jdbcUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
         String[] userInfo = dbUri.getUserInfo().split(":");
