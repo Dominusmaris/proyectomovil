@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    COLORES: Paleta Bancaria Profesional
+    Inspirado en: Apps bancarias modernas
+    Ubicación: res/values/colors_bancario.xml
+-->
+<resources>
+
+    <!-- COLORES PRIMARIOS -->
+    <color name="primary_red">#EC0000</color>           <!-- Rojo bancario principal -->
+    <color name="primary_red_dark">#CC0000</color>      <!-- Rojo oscuro para pressed states -->
+    <color name="accent_primary">#1976D2</color>        <!-- Azul para enlaces y acciones secundarias -->
+    <color name="accent_secondary">#4CAF50</color>      <!-- Verde para éxito/ingresos -->
+
+    <!-- BACKGROUNDS -->
+    <color name="background_primary">#FFFFFF</color>    <!-- Blanco puro para fondos principales -->
+    <color name="background_secondary">#F8F9FA</color>  <!-- Gris muy claro para cards -->
+    <color name="background_tertiary">#F5F5F5</color>   <!-- Gris claro para secciones -->
+    <color name="surface_elevated">#FFFFFF</color>      <!-- Superficie elevada (cards, dialogs) -->
+
+    <!-- INPUTS -->
+    <color name="input_background">#F8F9FA</color>      <!-- Fondo de campos de texto -->
+    <color name="input_stroke">#E0E0E0</color>          <!-- Borde normal de inputs -->
+    <color name="input_stroke_focused">#1976D2</color>  <!-- Borde cuando está enfocado -->
+
+    <!-- TEXTOS -->
+    <color name="text_primary">#212121</color>          <!-- Negro para títulos y texto principal -->
+    <color name="text_secondary">#757575</color>        <!-- Gris para texto secundario -->
+    <color name="text_hint">#BDBDBD</color>             <!-- Gris claro para hints -->
+    <color name="text_on_primary">#FFFFFF</color>       <!-- Blanco para texto sobre fondo rojo -->
+    <color name="text_success">#2E7D32</color>          <!-- Verde oscuro para textos de éxito -->
+    <color name="text_error">#C62828</color>            <!-- Rojo oscuro para errores -->
+
+    <!-- ICONOS -->
+    <color name="icon_primary">#424242</color>          <!-- Gris oscuro para iconos principales -->
+    <color name="icon_secondary">#9E9E9E</color>        <!-- Gris para iconos secundarios -->
+    <color name="icon_accent">#1976D2</color>           <!-- Azul para iconos de acción -->
+
+    <!-- ESTADOS FINANCIEROS -->
+    <color name="money_positive">#2E7D32</color>        <!-- Verde para ingresos/saldo positivo -->
+    <color name="money_negative">#C62828</color>        <!-- Rojo para gastos/saldo negativo -->
+    <color name="money_neutral">#424242</color>         <!-- Gris para montos neutrales -->
+
+    <!-- CARDS Y ELEMENTOS -->
+    <color name="card_background">#FFFFFF</color>       <!-- Fondo de tarjetas -->
+    <color name="card_stroke">#E0E0E0</color>          <!-- Borde sutil de tarjetas -->
+    <color name="divider">#E0E0E0</color>               <!-- Líneas divisoras -->
+    <color name="shadow">#40000000</color>              <!-- Sombra sutil (25% negro) -->
+
+    <!-- BOTONES -->
+    <color name="button_primary">#EC0000</color>        <!-- Botón principal (rojo) -->
+    <color name="button_primary_pressed">#CC0000</color> <!-- Botón principal presionado -->
+    <color name="button_secondary">#FFFFFF</color>      <!-- Botón secundario (blanco) -->
+    <color name="button_secondary_stroke">#1976D2</color> <!-- Borde botón secundario -->
+    <color name="button_disabled">#F5F5F5</color>       <!-- Botón deshabilitado -->
+
+    <!-- NAVEGACIÓN -->
+    <color name="bottom_nav_background">#FFFFFF</color>  <!-- Fondo navigation bottom -->
+    <color name="bottom_nav_selected">#EC0000</color>   <!-- Item seleccionado -->
+    <color name="bottom_nav_unselected">#9E9E9E</color> <!-- Items no seleccionados -->
+
+    <!-- ESPECÍFICOS PARA TRANSACCIONES -->
+    <color name="categoria_alimentacion">#FF9800</color>
+    <color name="categoria_transporte">#2196F3</color>
+    <color name="categoria_salud">#E91E63</color>
+    <color name="categoria_entretenimiento">#9C27B0</color>
+    <color name="categoria_vivienda">#795548</color>
+    <color name="categoria_trabajo">#4CAF50</color>
+
+</resources>

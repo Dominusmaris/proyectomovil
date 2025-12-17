@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Círculo de fondo -->
+    <path
+        android:fillColor="#EC0000"
+        android:pathData="M60,60m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0"/>
+
+    <!-- Símbolo de peso ($) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,25C49,25 40,34 40,45C40,49 42,52 45,54L45,66C42,68 40,71 40,75C40,86 49,95 60,95C71,95 80,86 80,75C80,71 78,68 75,66L75,54C78,52 80,49 80,45C80,34 71,25 60,25ZM60,85C55,85 50,80 50,75C50,70 55,65 60,65C65,65 70,70 70,75C70,80 65,85 60,85ZM60,35C65,35 70,40 70,45C70,50 65,55 60,55C55,55 50,50 50,45C50,40 55,35 60,35Z"/>
+
+    <!-- Línea vertical del símbolo $ -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M57,15L57,25L63,25L63,15Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M57,95L57,105L63,105L63,95Z"/>
+</vector>
