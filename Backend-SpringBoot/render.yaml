@@ -12,6 +12,10 @@ services:
         value: 3.9
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+      - key: JDBC_DATABASE_URL
+        fromDatabase:
+          name: finanzas-db-evan
+          property: connectionString
       - key: SHOW_SQL
         value: false
       - key: LOG_LEVEL
