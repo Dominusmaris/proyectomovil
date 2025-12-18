@@ -104,6 +104,6 @@ class ApiTestViewModel : ViewModel() {
      */
     fun clearTestResult() {
         _apiTestResult.value = ""
-        _connectionStatus.value = null
+        _connectionStatus.value = false
     }
 }

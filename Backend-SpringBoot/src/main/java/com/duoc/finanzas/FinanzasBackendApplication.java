@@ -11,6 +11,10 @@ import org.slf4j.LoggerFactory;
  * Estudiante: [Tu nombre]
  */
 @SpringBootApplication
+@org.springframework.context.annotation.ComponentScan(basePackages = {
+    "com.duoc.finanzas",
+    "com.registrofinanzas.backend"
+})
 public class FinanzasBackendApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(FinanzasBackendApplication.class);
