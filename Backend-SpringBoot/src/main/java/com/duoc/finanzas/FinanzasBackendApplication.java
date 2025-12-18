@@ -10,8 +10,7 @@ import org.slf4j.LoggerFactory;
  * Proyecto: App Finanzas DuocUC - DSY1105
  * Estudiante: [Tu nombre]
  */
-@SpringBootApplication
-@org.springframework.context.annotation.ComponentScan(basePackages = {
+@SpringBootApplication(scanBasePackages = {
     "com.duoc.finanzas",
     "com.registrofinanzas.backend"
 })
