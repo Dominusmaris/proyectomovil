@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
  * Proyecto: App Finanzas DuocUC - DSY1105
  * Estudiante: [Tu nombre]
  */
-@SpringBootApplication(scanBasePackages = {
-    "com.duoc.finanzas",
-    "com.registrofinanzas.backend"
-})
+@SpringBootApplication
 public class FinanzasBackendApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(FinanzasBackendApplication.class);
