@@ -18,13 +18,13 @@ object NetworkModule {
     // ═══════════════════════════════════════════════════════════════
 
     // 🏠 DESARROLLO LOCAL (Emulador Android Studio)
-    private const val BASE_URL = "http://10.0.2.2:8081/"
+    // private const val BASE_URL = "http://10.0.2.2:8081/"
 
     // 📱 DESARROLLO LOCAL (Dispositivo físico)
     // private const val BASE_URL = "http://192.168.1.16:8081/"  // ← Cambiar IP por la de tu Mac
 
     // ☁️ PRODUCCIÓN (Render - cuando esté desplegado)
-    // private const val BASE_URL = "https://backend-finanzas-xxxx.onrender.com/"
+    private const val BASE_URL = "https://proyectomovil-3m42.onrender.com/"
 
     // ═══════════════════════════════════════════════════════════════
     // 📝 INSTRUCCIONES:

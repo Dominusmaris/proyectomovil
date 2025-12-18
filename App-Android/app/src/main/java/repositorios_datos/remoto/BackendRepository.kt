@@ -20,7 +20,7 @@ class BackendRepository(private val context: Context) {
 
     // URLs del backend (local y producción)
     private val urlLocal = "http://10.0.2.2:8081/"      // Para emulador Android
-    private val urlProduccion = "https://backend-finanzas-xxxxx.onrender.com/"
+    private val urlProduccion = "https://proyectomovil-3m42.onrender.com/"
 
     init {
         // Configurar Retrofit para el backend

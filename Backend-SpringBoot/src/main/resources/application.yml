@@ -1,85 +1,37 @@
 # CONFIGURACIÓN BACKEND FINANZAS
 # Proyecto: App Android Finanzas - DuocUC
-# Perfil por defecto: desarrollo local
+# Base de datos H2 para simplicidad y confiabilidad
 
 spring:
-  profiles:
-    active: dev
-
   # Configuración JPA
   jpa:
     hibernate:
       ddl-auto: update  # Crear/actualizar tablas automáticamente
-    show-sql: true     # Mostrar consultas SQL en logs
+    show-sql: false     # No mostrar consultas SQL
     properties:
       hibernate:
-        format_sql: true # Formatear SQL para mejor lectura
+        format_sql: false
 
-  # Base de datos H2 para desarrollo local
+  # Base de datos H2 en memoria (funciona tanto local como en Render)
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:finanzasdb
     driver-class-name: org.h2.Driver
     username: sa
     password: password
 
-  # Consola H2 para ver la BD en navegador
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
-# Puerto del servidor
-server:
-  port: 8080
-
-# Logs detallados
-logging:
-  level:
-    com.duoc.finanzas: DEBUG
-    org.springframework.web: DEBUG
-    org.hibernate.SQL: DEBUG
-  pattern:
-    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-
----
-# PERFIL PRODUCCIÓN (Render)
-spring:
-  config:
-    activate:
-      on-profile: prod
-
-  # PostgreSQL configurado via DatabaseUrlConfig.java
-
-  # Deshabilitar Spring Security temporalmente
-  security:
-    user:
-      name: admin
-      password: admin123
-
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update  # Permitir actualización de esquema
-    show-sql: false      # No mostrar SQL en producción
-    properties:
-      hibernate:
-        format_sql: false
-        # Evitar el warning del dialecto
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
-  # Desabilitar H2 console en producción
+  # Consola H2 deshabilitada por seguridad
   h2:
     console:
       enabled: false
 
-# Puerto dinámico de Render
+# Puerto dinámico para Render
 server:
   port: ${PORT:8080}
   address: 0.0.0.0
 
-# Logs mínimos en producción
+# Logs mínimos
 logging:
   level:
     com.duoc.finanzas: INFO
-    org.hibernate.orm.deprecation: ERROR  # Suprimir warnings de dialecto
-    root: INFO
+    org.hibernate.orm.deprecation: ERROR
+    root: WARN
