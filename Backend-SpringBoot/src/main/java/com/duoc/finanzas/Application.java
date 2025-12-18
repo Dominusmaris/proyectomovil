@@ -1,38 +1,42 @@
 package com.duoc.finanzas;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.HashMap;
 
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
 @RestController
 @CrossOrigin(origins = "*")
-public class TestController {
+class SimpleController {
 
     @GetMapping("/")
     public String home() {
-        return "Backend Finanzas funcionando ✅";
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "✅ Backend funcionando correctamente";
+        return "✅ Backend Finanzas FUNCIONANDO!";
     }
 
     @PostMapping("/api/auth/register")
     public Map<String, Object> register(@RequestBody Map<String, Object> data) {
         Map<String, Object> response = new HashMap<>();
-        response.put("message", "Usuario registrado exitosamente");
-        response.put("token", "fake-jwt-token-123");
-        response.put("usuario", data);
+        response.put("success", true);
+        response.put("message", "Usuario registrado OK");
+        response.put("token", "abc123");
         return response;
     }
 
     @PostMapping("/api/auth/login")
     public Map<String, Object> login(@RequestBody Map<String, Object> data) {
         Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
         response.put("message", "Login exitoso");
-        response.put("token", "fake-jwt-token-456");
-        response.put("usuario", data);
+        response.put("token", "xyz789");
         return response;
     }
 }
