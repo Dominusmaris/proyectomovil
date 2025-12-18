@@ -211,8 +211,9 @@ class PerfilUsuarioFragment : Fragment() {
     private fun cerrarSesion() {
         gestorAuth.cerrarSesion()
         mostrarMensaje("Sesión cerrada")
-        // En una implementación real navegarías al login
-        requireActivity().finish()
+
+        // Llamar al método en MainActivity para navegar al login
+        (requireActivity() as com.mardones_gonzales.gastosapp.MainActivity).onCerrarSesion()
     }
 
     private fun mostrarCargando(mostrar: Boolean) {

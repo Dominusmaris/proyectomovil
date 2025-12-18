@@ -79,8 +79,11 @@ class AuthController {
             String password = (String) data.get("password");
             String nombre = data.containsKey("nombre") ? (String) data.get("nombre") : email;
 
+            System.out.println("🔥 REGISTRO INTENTO: " + email);
+
             // Verificar si el usuario ya existe
             if (usuarioRepository.findByEmail(email).isPresent()) {
+                System.out.println("❌ Usuario ya existe: " + email);
                 response.put("success", false);
                 response.put("message", "Usuario ya existe");
                 return response;
@@ -90,11 +93,14 @@ class AuthController {
             Usuario nuevoUsuario = new Usuario(email, password, nombre);
             usuarioRepository.save(nuevoUsuario);
 
+            System.out.println("✅ USUARIO CREADO: " + email + " ID: " + nuevoUsuario.getId());
+
             response.put("success", true);
             response.put("message", "Usuario registrado correctamente");
             response.put("token", "token_" + nuevoUsuario.getId());
 
         } catch (Exception e) {
+            System.out.println("💥 ERROR REGISTRO: " + e.getMessage());
             response.put("success", false);
             response.put("message", "Error al registrar usuario");
         }
@@ -110,9 +116,12 @@ class AuthController {
             String email = (String) data.get("email");
             String password = (String) data.get("password");
 
+            System.out.println("🔑 LOGIN INTENTO: " + email);
+
             Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
 
             if (usuario.isPresent() && usuario.get().getPassword().equals(password)) {
+                System.out.println("✅ LOGIN EXITOSO: " + email + " ID: " + usuario.get().getId());
                 response.put("success", true);
                 response.put("message", "Login exitoso");
                 response.put("token", "token_" + usuario.get().getId());
@@ -122,11 +131,13 @@ class AuthController {
                     "nombre", usuario.get().getNombre()
                 ));
             } else {
+                System.out.println("❌ LOGIN FALLIDO: " + email + " (credenciales incorrectas)");
                 response.put("success", false);
                 response.put("message", "Credenciales incorrectas");
             }
 
         } catch (Exception e) {
+            System.out.println("💥 ERROR LOGIN: " + e.getMessage());
             response.put("success", false);
             response.put("message", "Error en login");
         }

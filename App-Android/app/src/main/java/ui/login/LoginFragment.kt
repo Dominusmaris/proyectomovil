@@ -7,15 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 import com.mardones_gonzales.gastosapp.R
 import com.mardones_gonzales.gastosapp.autenticacion.CredencialesManager
 import com.mardones_gonzales.gastosapp.databinding.FragmentLoginBinding
+import com.mardones_gonzales.gastosapp.repositorios_datos.remoto.BackendRepository
+import com.mardones_gonzales.gastosapp.repositorios_datos.remoto.ResultadoBackend
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private lateinit var backendRepository: BackendRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,38 +33,28 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backendRepository = BackendRepository(requireContext())
         setupUI()
     }
 
     private fun setupUI() {
-        // Mostrar credenciales demo para facilitar testing
-        mostrarCredencialesDemo()
+        // Pre-llenar con email de ejemplo
+        binding.etEmail.setText("profesor@duoc.cl")
 
-        // Botón Entrar con validación REAL
+        // Botón Entrar con validación BACKEND REAL
         binding.btnLogin.setOnClickListener {
-            val usuario = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
             when {
-                usuario.isEmpty() -> {
-                    Toast.makeText(context, "Ingresa tu usuario", Toast.LENGTH_SHORT).show()
+                email.isEmpty() -> {
+                    Toast.makeText(context, "Ingresa tu email", Toast.LENGTH_SHORT).show()
                 }
                 password.isEmpty() -> {
                     Toast.makeText(context, "Ingresa tu contraseña", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    // VALIDACIÓN REAL CON CREDENCIALES ESPECÍFICAS
-                    if (CredencialesManager.validarCredenciales(usuario, password)) {
-                        // Login exitoso - iniciar sesión
-                        CredencialesManager.iniciarSesion(requireContext(), usuario)
-                        Toast.makeText(context, "✅ Bienvenido $usuario", Toast.LENGTH_SHORT).show()
-
-                        // Notificar al MainActivity que login fue exitoso
-                        (activity as? com.mardones_gonzales.gastosapp.MainActivity)?.onLoginExitoso()
-                    } else {
-                        // Credenciales incorrectas
-                        mostrarErrorCredenciales()
-                    }
+                    realizarLogin(email, password)
                 }
             }
         }
@@ -74,16 +69,51 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun mostrarCredencialesDemo() {
-        // Solo para testing - pre-llenar usuario (no password por seguridad)
-        val credenciales = CredencialesManager.getCredencialesDemo()
-        binding.etEmail.setText(credenciales.first)
+    private fun realizarLogin(email: String, password: String) {
+        // Mostrar loading
+        mostrarCargando(true)
+
+        lifecycleScope.launch {
+            try {
+                when (val resultado = backendRepository.login(email, password)) {
+                    is ResultadoBackend.Exitoso -> {
+                        // Login exitoso - guardar sesión
+                        CredencialesManager.iniciarSesion(requireContext(), email)
+                        Toast.makeText(context, "✅ Bienvenido!", Toast.LENGTH_SHORT).show()
+
+                        // Notificar al MainActivity
+                        (activity as? com.mardones_gonzales.gastosapp.MainActivity)?.onLoginExitoso()
+                    }
+                    is ResultadoBackend.Error -> {
+                        mostrarErrorCredenciales(resultado.mensaje)
+                    }
+                    else -> {
+                        mostrarErrorCredenciales("Error inesperado")
+                    }
+                }
+            } catch (e: Exception) {
+                mostrarErrorCredenciales("Error de conexión: ${e.message}")
+            } finally {
+                mostrarCargando(false)
+            }
+        }
     }
 
-    private fun mostrarErrorCredenciales() {
-        Toast.makeText(context, "❌ Credenciales incorrectas", Toast.LENGTH_LONG).show()
-        binding.tilEmail.error = "Usuario: estudiante.duoc"
-        binding.tilPassword.error = "Password: ProyectoFinanzas2024"
+    private fun mostrarCargando(mostrar: Boolean) {
+        binding.apply {
+            if (mostrar) {
+                btnLogin.isEnabled = false
+                btnLogin.text = "Iniciando sesión..."
+            } else {
+                btnLogin.isEnabled = true
+                btnLogin.text = "ENTRAR"
+            }
+        }
+    }
+
+    private fun mostrarErrorCredenciales(mensaje: String = "Credenciales incorrectas") {
+        Toast.makeText(context, "❌ $mensaje", Toast.LENGTH_LONG).show()
+        binding.tilPassword.error = "Verifica tu email y contraseña"
     }
 
     override fun onDestroyView() {

@@ -23,8 +23,8 @@ class BackendRepository(private val context: Context) {
     private val urlProduccion = "https://proyectomovil-3m42.onrender.com/"
 
     init {
-        // Configurar Retrofit para el backend
-        val baseUrl = if (esEntornoDesarrollo()) urlLocal else urlProduccion
+        // FORZAR PRODUCCIÓN - Siempre usar Render
+        val baseUrl = urlProduccion
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)

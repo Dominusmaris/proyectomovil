@@ -29,9 +29,12 @@ server:
   port: ${PORT:8080}
   address: 0.0.0.0
 
-# Logs mínimos
+# Logs para ver actividad en Render
 logging:
   level:
-    com.duoc.finanzas: INFO
-    org.hibernate.orm.deprecation: ERROR
-    root: WARN
+    com.duoc.finanzas: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.springframework.web: DEBUG
+    root: INFO
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %logger{36} - %msg%n"

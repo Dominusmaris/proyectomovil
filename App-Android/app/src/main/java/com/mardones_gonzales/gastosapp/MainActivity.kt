@@ -82,4 +82,20 @@ class MainActivity : AppCompatActivity() {
         // Navegar a Home
         navController.navigate(com.mardones_gonzales.gastosapp.R.id.homeFragment)
     }
+
+    // Llamado desde PerfilUsuarioFragment cuando logout
+    fun onCerrarSesion() {
+        estaLogueado = false
+        CredencialesManager.cerrarSesion(this)
+        ocultarBottomNavigation()
+
+        // Navegar de vuelta al login
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        // Limpiar todo el stack y ir al login
+        navController.navigate(R.id.loginFragment)
+        navController.popBackStack(R.id.loginFragment, false)
+    }
 }
